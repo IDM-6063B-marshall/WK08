@@ -22,9 +22,12 @@ function setup() {
     let pixelIsRed = redVal > 2 * greenVal && redVal > 2 * blueVal && redVal > 20;
 
     if (!pixelIsRed) {
-      mImg.pixels[idx + 0] = 0;
-      mImg.pixels[idx + 1] = 0;
-      mImg.pixels[idx + 2] = 0;
+      //making grayscale
+      let lVal = (redVal + greenVal + blueVal) / 3;
+      //swapping color in different channels
+      mImg.pixels[idx + 0] = blueVal;
+      mImg.pixels[idx + 1] = redVal;
+      mImg.pixels[idx + 2] = greenVal;
     }
   }
   mImg.updatePixels();

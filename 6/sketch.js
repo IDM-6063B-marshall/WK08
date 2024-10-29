@@ -5,7 +5,7 @@ let faceMesh;
 let faces = [];
 
 function preload() {
-  faceMesh = ml5.faceMesh();
+  faceMesh = ml5.faceMesh(); //ml5 is a library we imported
 }
 
 function gotFaces(results) {
@@ -23,5 +23,14 @@ function setup() {
 function draw() {
   image(video, 0, 0);
 
-  print(faces);
+  //map the keypoints onto the face!!
+  if (faces.length > 0) {
+  let keypoints = faces[0].lips.keypoints;
+  noStroke()
+  fill (200, 0, 0)
+  for (let idx = 0; idx < keypoints.length; idx++){
+ellipse(keypoints[idx].x, keypoints[idx].y, 3)
+  
+  }
+  }
 }

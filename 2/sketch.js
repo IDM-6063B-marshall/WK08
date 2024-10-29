@@ -16,13 +16,22 @@ function setup() {
   let rectDim = 16;
   for (let y = 0; y < height; y += rectDim) {
     for (let x = 0; x < width; x += rectDim) {
-      fill(255, 255, 255);
-      rect(x, y, rectDim);
+      //maybe instead of this rectangle being white we want to get info from our image
+      let pixIdx = y * mImg.width + x;
+      //account for split up up rbg values
+      let p5Idx = 4 * pixIdx
+      let redVal = mImg.pixels[p5Idx + 0];
+      let greenVal = mImg.pixels[p5Idx + 1];
+      let blueVal = mImg.pixels[p5Idx + 2];
+      fill(redVal, greenVal, blueVal);
+      let diam = map(blueVal, 0, 255, 16, 8)
+      //rect(x, y, rectDim);
+      rect(x, y, diam)
     }
   }
   mImg.updatePixels();
 
-  image(mImg, 0, 0);
+  //image(mImg, 0, 0);
 }
 
 function draw() {}
